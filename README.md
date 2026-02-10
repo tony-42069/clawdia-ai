@@ -2,7 +2,7 @@
 
 **OpenClaw as your girlfriend.** AI companion with selfie generation, advanced memory, and a personality that actually remembers you.
 
-![Clawdia](assets/clawdia.png)
+<img src="assets/clawdia.png" alt="Clawdia" width="200"/>
 
 ## Quick Install
 
