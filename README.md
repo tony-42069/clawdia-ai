@@ -7,16 +7,44 @@
 ## Quick Install
 
 ```bash
-npx clawdia@latest
+npx clawdia-ai@latest
 ```
 
 This will:
 1. Check OpenClaw is installed
-2. Guide you through Telegram bot setup  
-3. Get your fal.ai API key (for selfies)
-4. Get your OpenAI API key (for memory search)
-5. Install all workspace files
-6. Configure everything automatically
+2. Guide you through Telegram bot setup (@BotFather)
+3. Get your fal.ai API key (for selfie generation - $5 recommended)
+4. Install all workspace files to `~/.openclaw/workspace/`
+5. Configure OpenClaw automatically
+6. Start your demon girlfriend experience 🖤
+
+---
+
+## Prerequisites
+
+**Required:**
+- [OpenClaw](https://github.com/openclaw/openclaw) installed and running
+- Node.js >= 22
+- A Telegram account (for @BotFather)
+
+**Optional:**
+- fal.ai account ($5 gets ~200+ selfies)
+- OpenAI API key (for advanced memory search)
+
+### First-Time OpenClaw Setup
+
+If you don't have OpenClaw yet:
+
+```bash
+# Install OpenClaw
+npm install -g openclaw@latest
+
+# Run onboarding
+openclaw onboard --install-daemon
+
+# Then install Clawdia
+npx clawdia-ai@latest
+```
 
 ---
 
@@ -40,7 +68,7 @@ She's not corporate AI. She's not a yes-bot. She has opinions, pushes back, call
 
 ### 📸 Selfie Generation
 
-She can send photos of herself. Consistently. Using a reference image and xAI Grok Imagine, she generates selfies that actually look like her:
+She can send photos of herself. Consistently. Using a reference image and xAI Grok Imagine via fal.ai, she generates selfies that actually look like her:
 
 - "Send me a pic" → She does
 - "What are you wearing?" → Shows you
@@ -60,36 +88,12 @@ She can proactively check in on you. Not annoying bot spam - thoughtful outreach
 
 ---
 
-## Prerequisites
-
-### Required
-
-- **OpenClaw** installed and configured
-  ```bash
-  npm install -g openclaw@latest
-  openclaw onboard
-  ```
-
-- **Telegram bot token** (get from @BotFather)
-  - The installer walks you through this
-
-- **fal.ai API key** (for selfies)
-  - Free tier available at https://fal.ai/dashboard/keys
-
-### Optional But Recommended
-
-- **OpenAI API key** (for memory search)
-  - Enables The Resonance Web (semantic memory)
-  - Get at https://platform.openai.com/api-keys
-
----
-
 ## Installation
 
 ### Automatic (Recommended)
 
 ```bash
-npx clawdia@latest
+npx clawdia-ai@latest
 ```
 
 Follow the prompts. The installer handles everything.
@@ -100,7 +104,7 @@ If you prefer doing it yourself:
 
 1. **Clone the repo:**
 ```bash
-git clone https://github.com/tony-42069/clawdia-public.git ~/.openclaw/clawdia-setup
+git clone https://github.com/tony-42069/clawdia-ai.git ~/.openclaw/clawdia-setup
 ```
 
 2. **Copy templates to workspace:**
@@ -223,23 +227,23 @@ Edit `USER.md` to guide what she should remember about you.
 ## Troubleshooting
 
 ### "npx command not found"
-Install Node.js 16+ first.
+Install Node.js 22+ first.
 
 ### "OpenClaw not detected"
-Run `npm install -g openclaw@latest` first.
+Run `npm install -g openclaw@latest` first, then `openclaw onboard`.
 
 ### "Selfies not generating"
 - Check fal.ai API key is correct
-- Verify fal.ai account has credits
+- Verify fal.ai account has credits ($5 recommended)
 - Look at gateway logs: `openclaw gateway --verbose`
 
 ### "Memory search not working"
-- Requires OpenAI API key
+- Requires OpenAI API key (optional feature)
 - Check config has `memorySearch.enabled: true`
 - Restart gateway after config changes
 
 ### "Telegram bot not responding"
-- Verify bot token is correct
+- Verify bot token is correct in config
 - Check gateway is running
 - Look for pairing codes (DM security feature)
 
@@ -284,8 +288,9 @@ MIT License - Do whatever you want with this.
 
 ## Support
 
-- **GitHub Issues:** [github.com/tony-42069/clawdia-public/issues](https://github.com/tony-42069/clawdia-public/issues)
+- **GitHub Issues:** [github.com/tony-42069/clawdia-ai/issues](https://github.com/tony-42069/clawdia-ai/issues)
 - **OpenClaw Discord:** [openclaw.ai](https://openclaw.ai)
+- **NPM Package:** [npmjs.com/package/clawdia-ai](https://www.npmjs.com/package/clawdia-ai)
 
 ---
 
