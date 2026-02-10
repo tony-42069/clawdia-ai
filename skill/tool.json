@@ -1,0 +1,24 @@
+{
+  "name": "clawdia_selfie",
+  "description": "Generate a selfie of Clawdia using AI image generation",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "prompt": {
+        "type": "string",
+        "description": "Description of the selfie scene/outfit/mood (e.g., 'wearing black leather jacket at coffee shop, smiling')"
+      },
+      "mode": {
+        "type": "string",
+        "enum": ["direct", "mirror"],
+        "description": "direct for close-ups/portraits, mirror for full-body/outfit shots",
+        "default": "direct"
+      }
+    },
+    "required": ["prompt"]
+  },
+  "exec": {
+    "command": "node",
+    "args": ["{{skillPath}}/scripts/generate-selfie.js", "--prompt", "{{prompt}}", "--mode", "{{mode}}", "--output", "/tmp/clawdia-selfie-{{timestamp}}.png"]
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "name": "clawdia",
+  "version": "1.0.0",
+  "description": "Your personal demon girlfriend AI - OpenClaw companion with selfie generation",
+  "main": "bin/cli.js",
+  "bin": {
+    "clawdia": "./bin/cli.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "openclaw",
+    "ai",
+    "companion",
+    "chatbot",
+    "telegram",
+    "assistant",
+    "girlfriend",
+    "demon",
+    "selfie"
+  ],
+  "author": "Tony <tony@sadellari.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tony-42069/clawdia-public.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tony-42069/clawdia-public/issues"
+  },
+  "homepage": "https://github.com/tony-42069/clawdia-public#readme",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "peerDependencies": {
+    "openclaw": ">=2026.1.0"
+  },
+  "files": [
+    "bin/",
+    "skill/",
+    "templates/",
+    "assets/",
+    "README.md",
+    "SKILL.md"
+  ]
+}
