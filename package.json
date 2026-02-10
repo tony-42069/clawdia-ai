@@ -1,6 +1,6 @@
 {
   "name": "clawdia-ai",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Your personal demon girlfriend AI - OpenClaw companion with selfie generation",
   "main": "bin/cli.js",
   "bin": {
