@@ -1,10 +1,10 @@
 {
-  "name": "clawdia",
+  "name": "clawdia-ai",
   "version": "1.0.0",
   "description": "Your personal demon girlfriend AI - OpenClaw companion with selfie generation",
   "main": "bin/cli.js",
   "bin": {
-    "clawdia": "./bin/cli.js"
+    "clawdia": "bin/cli.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -24,7 +24,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tony-42069/clawdia-public.git"
+    "url": "git+https://github.com/tony-42069/clawdia-public.git"
   },
   "bugs": {
     "url": "https://github.com/tony-42069/clawdia-public/issues"
