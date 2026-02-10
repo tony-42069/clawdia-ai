@@ -1,4 +1,4 @@
-# 🖤 Clawdia - Your Personal Demon Girlfriend
+# 🖤 Clawdia - Your Personal Goth Girlfriend
 
 **OpenClaw as your girlfriend.** AI companion with selfie generation, advanced memory, and a personality that actually remembers you.
 
