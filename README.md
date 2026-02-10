@@ -16,7 +16,7 @@ This will:
 3. Get your fal.ai API key (for selfie generation - $5 recommended)
 4. Install all workspace files to `~/.openclaw/workspace/`
 5. Configure OpenClaw automatically
-6. Start your demon girlfriend experience 🖤
+6. Start your goth girlfriend experience 🖤
 
 ---
 
