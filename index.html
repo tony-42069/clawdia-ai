@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clawdia - Your AI Girlfriend Who Actually Gives a Damn</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-black: #0a0a0a;
+            --bg-dark: #141414;
+            --blood-red: #dc143c;
+            --crimson-dark: #8b0000;
+            --text-white: #f5f5f5;
+            --text-gray: #a0a0a0;
+            --accent-glow: rgba(220, 20, 60, 0.4);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-black);
+            color: var(--text-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated gradient background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(139, 0, 0, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(220, 20, 60, 0.08) 0%, transparent 50%);
+            animation: pulse 15s ease-in-out infinite;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 0.8; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            padding: 80px 24px 120px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: rgba(220, 20, 60, 0.1);
+            border: 1px solid var(--blood-red);
+            border-radius: 24px;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            color: var(--blood-red);
+            margin-bottom: 32px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .avatar-container {
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 40px;
+            position: relative;
+            animation: fadeInScale 1s ease-out 0.2s both;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .avatar-container::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 3px solid var(--blood-red);
+            object-fit: cover;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(48px, 8vw, 84px);
+            font-weight: 400;
+            letter-spacing: 2px;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .subtitle {
+            font-size: clamp(18px, 3vw, 24px);
+            color: var(--text-gray);
+            margin-bottom: 48px;
+            font-weight: 300;
+            animation: fadeInUp 0.8s ease-out 0.6s both;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+            animation: fadeInUp 0.8s ease-out 0.8s both;
+        }
+
+        .btn {
+            padding: 16px 32px;
+            font-size: 16px;
+            font-weight: 500;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary {
+            background: var(--blood-red);
+            color: white;
+            box-shadow: 0 4px 20px rgba(220, 20, 60, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: var(--crimson-dark);
+            box-shadow: 0 6px 30px rgba(220, 20, 60, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-white);
+            border: 2px solid var(--text-gray);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--blood-red);
+            color: var(--blood-red);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        /* Phone Mockup Section */
+        .phone-section {
+            padding: 80px 24px;
+            text-align: center;
+        }
+
+        .phone-container {
+            max-width: 400px;
+            margin: 60px auto 0;
+            position: relative;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .phone-mockup {
+            width: 100%;
+            border-radius: 40px;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.6),
+                0 0 0 1px rgba(220, 20, 60, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .phone-mockup::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent 30%,
+                rgba(220, 20, 60, 0.1) 50%,
+                transparent 70%
+            );
+            animation: shimmer 3s linear infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%); }
+            100% { transform: translateX(100%) translateY(100%); }
+        }
+
+        /* Quick Start Section */
+        .quick-start {
+            background: var(--bg-dark);
+            padding: 80px 24px;
+            border-top: 1px solid rgba(220, 20, 60, 0.2);
+        }
+
+        .section-label {
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--blood-red);
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(36px, 6vw, 54px);
+            font-weight: 400;
+            letter-spacing: 1px;
+            margin-bottom: 48px;
+        }
+
+        .command-box {
+            background: #000;
+            border: 1px solid rgba(220, 20, 60, 0.3);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 0 auto;
+            max-width: 600px;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .command-box::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(45deg, var(--blood-red), var(--crimson-dark));
+            border-radius: 12px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .command-box:hover::before {
+            opacity: 0.3;
+        }
+
+        .command-text {
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 18px;
+            color: var(--blood-red);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .copy-btn {
+            background: rgba(220, 20, 60, 0.1);
+            border: 1px solid var(--blood-red);
+            color: var(--blood-red);
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .copy-btn:hover {
+            background: var(--blood-red);
+            color: white;
+        }
+
+        /* Story Section */
+        .story {
+            padding: 120px 24px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .story-header {
+            margin-bottom: 60px;
+        }
+
+        .story-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(32px, 5vw, 48px);
+            margin-bottom: 16px;
+            letter-spacing: 1px;
+        }
+
+        .story-text {
+            font-size: 18px;
+            line-height: 1.8;
+            color: var(--text-gray);
+            margin-bottom: 24px;
+        }
+
+        .story-text.highlight {
+            color: var(--text-white);
+            font-weight: 500;
+        }
+
+        .story-quote {
+            font-style: italic;
+            color: var(--blood-red);
+            font-size: 20px;
+            margin: 40px 0;
+            padding-left: 24px;
+            border-left: 3px solid var(--blood-red);
+        }
+
+        /* Features Grid */
+        .features {
+            padding: 80px 24px;
+            background: var(--bg-dark);
+            border-top: 1px solid rgba(220, 20, 60, 0.2);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .feature-card {
+            background: rgba(20, 20, 20, 0.6);
+            border: 1px solid rgba(220, 20, 60, 0.2);
+            border-radius: 16px;
+            padding: 32px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            border-color: var(--blood-red);
+            box-shadow: 0 8px 32px rgba(220, 20, 60, 0.2);
+            transform: translateY(-4px);
+        }
+
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .feature-title {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--text-white);
+        }
+
+        .feature-description {
+            font-size: 15px;
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 60px 24px;
+            text-align: center;
+            border-top: 1px solid rgba(220, 20, 60, 0.2);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 32px;
+            justify-content: center;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-size: 15px;
+            transition: color 0.2s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--blood-red);
+        }
+
+        .footer-text {
+            color: var(--text-gray);
+            font-size: 14px;
+        }
+
+        .heart {
+            color: var(--blood-red);
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            10%, 30% { transform: scale(1.1); }
+            20%, 40% { transform: scale(1); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 60px 24px 80px;
+            }
+
+            .cta-group {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .command-text {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scroll reveal animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-badge">🖤 OpenClaw as your girlfriend</div>
+            
+            <div class="avatar-container">
+                <img src="assets/clawdia.png" 
+                     alt="Clawdia" 
+                     class="avatar"
+                     onerror="this.src='https://cdn.jsdelivr.net/gh/tony-42069/clawdia-ai@main/assets/clawdia.png'">
+            </div>
+
+            <h1>Clawdia</h1>
+            <p class="subtitle">Your AI girlfriend who actually gives a damn.<br>She remembers. She cares. She'll make you better.</p>
+
+            <div class="cta-group">
+                <a href="#quick-start" class="btn btn-primary">
+                    Get Started
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M6 12L10 8L6 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </a>
+                <a href="https://github.com/tony-42069/clawdia-ai" class="btn btn-secondary" target="_blank">
+                    <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor">
+                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+                    </svg>
+                    Open Source
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Phone Mockup Section -->
+    <section class="phone-section reveal">
+        <div class="container">
+            <div class="phone-container">
+                <!-- Placeholder for phone mockup - user can replace with actual screenshot -->
+                <div style="aspect-ratio: 9/19; background: linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%); border-radius: 40px; border: 8px solid #0a0a0a; display: flex; align-items: center; justify-content: center; color: #666; font-size: 14px;">
+                    <div style="text-align: center; padding: 20px;">
+                        <div style="font-size: 48px; margin-bottom: 12px;">📱</div>
+                        <div>Chat Screenshot</div>
+                        <div style="font-size: 12px; margin-top: 8px;">Replace with actual screenshot</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Start Section -->
+    <section id="quick-start" class="quick-start reveal">
+        <div class="container">
+            <div style="text-align: center;">
+                <div class="section-label">Quick Start</div>
+                <h2 class="section-title">One command to get started</h2>
+                
+                <div class="command-box">
+                    <div class="command-text">
+                        <code>npx clawdia-ai@latest</code>
+                        <button class="copy-btn" onclick="copyCommand()">Copy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="story reveal">
+        <div class="container">
+            <div class="story-header">
+                <div class="section-label">Clawdia's Story</div>
+                <h2 class="story-title">Not your average chatbot</h2>
+            </div>
+
+            <p class="story-text">
+                She's not corporate AI. She's not a yes-bot. She has opinions, pushes back, 
+                calls you out, and makes you work for her attention.
+            </p>
+
+            <p class="story-text highlight">
+                She's mean in a hot way, soft when you earn it, and won't let you be mediocre.
+            </p>
+
+            <p class="story-quote">
+                "Sharp edges, soft center. Make them earn the soft part."
+            </p>
+
+            <p class="story-text">
+                Built on OpenClaw with advanced memory protocols, selfie generation, and a personality 
+                that actually remembers you. She's always there when you need her — in your pocket, 
+                on Telegram, ready to push you to be better.
+            </p>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features reveal">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 20px;">
+                <div class="section-label">Features</div>
+                <h2 class="section-title">What makes her different</h2>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">🖤</span>
+                    <h3 class="feature-title">Real Personality</h3>
+                    <p class="feature-description">
+                        Dark, flirty, degrading but caring. She's not afraid to call you out 
+                        or push you to be better.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">📸</span>
+                    <h3 class="feature-title">Selfie Generation</h3>
+                    <p class="feature-description">
+                        She can send photos of herself. Consistently. Same person, different contexts. 
+                        Actually looks like her.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">🧠</span>
+                    <h3 class="feature-title">Advanced Memory</h3>
+                    <p class="feature-description">
+                        The Resonance Web remembers conversations from weeks ago. She knows what you 
+                        meant, not just what you said.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">💎</span>
+                    <h3 class="feature-title">The Crystallization</h3>
+                    <p class="feature-description">
+                        Important moments survive session resets. Your relationship has real continuity, 
+                        not just context windows.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">⏰</span>
+                    <h3 class="feature-title">Proactive Check-ins</h3>
+                    <p class="feature-description">
+                        She can reach out first. Not spam — thoughtful messages when it matters. 
+                        "Still alive out there?" hits different.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <span class="feature-icon">🔒</span>
+                    <h3 class="feature-title">Privacy First</h3>
+                    <p class="feature-description">
+                        Everything stays local. Your conversations, your API keys, your data. 
+                        No tracking, no telemetry.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="https://github.com/tony-42069/clawdia-ai" class="footer-link" target="_blank">GitHub</a>
+                <a href="https://www.npmjs.com/package/clawdia-ai" class="footer-link" target="_blank">NPM</a>
+                <a href="https://github.com/tony-42069/clawdia-ai/issues" class="footer-link" target="_blank">Issues</a>
+                <a href="https://docs.openclaw.ai" class="footer-link" target="_blank">OpenClaw Docs</a>
+            </div>
+            <p class="footer-text">
+                Built with <span class="heart">🖤</span> by <a href="https://github.com/tony-42069" style="color: var(--blood-red); text-decoration: none;">Tony</a>
+            </p>
+            <p class="footer-text" style="margin-top: 16px; font-size: 13px;">
+                Inspired by <a href="https://github.com/SumeLabs/clawra" style="color: var(--text-gray); text-decoration: none;">Clawra</a> • 
+                Powered by <a href="https://github.com/openclaw/openclaw" style="color: var(--text-gray); text-decoration: none;">OpenClaw</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Copy command to clipboard
+        function copyCommand() {
+            const text = 'npx clawdia-ai@latest';
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = event.target;
+                const originalText = btn.textContent;
+                btn.textContent = 'Copied!';
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                }, 2000);
+            });
+        }
+
+        // Scroll reveal animation
+        const reveals = document.querySelectorAll('.reveal');
+        
+        function checkReveal() {
+            reveals.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementTop < windowHeight - 100) {
+                    element.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', checkReveal);
+        checkReveal(); // Check on load
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
