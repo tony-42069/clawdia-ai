@@ -67,6 +67,147 @@
             text-align: center;
             position: relative;
             padding: 80px 24px 120px;
+            overflow: hidden;
+        }
+
+        /* Animated particles */
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(220, 20, 60, 0.15) 0%, transparent 25%),
+                radial-gradient(circle at 80% 70%, rgba(139, 0, 0, 0.1) 0%, transparent 30%),
+                radial-gradient(circle at 50% 50%, rgba(220, 20, 60, 0.05) 0%, transparent 40%);
+            animation: particleFloat 20s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes particleFloat {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+                opacity: 0.3;
+            }
+            25% {
+                transform: translate(-30px, -30px) scale(1.1);
+                opacity: 0.5;
+            }
+            50% {
+                transform: translate(20px, 40px) scale(0.9);
+                opacity: 0.4;
+            }
+            75% {
+                transform: translate(40px, -20px) scale(1.05);
+                opacity: 0.6;
+            }
+        }
+
+        /* Grain texture overlay */
+        .grain-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.05'/%3E%3C/svg%3E");
+            opacity: 0.4;
+            pointer-events: none;
+            animation: grainShift 8s steps(10) infinite;
+        }
+
+        @keyframes grainShift {
+            0%, 100% { transform: translate(0, 0); }
+            10% { transform: translate(-5%, -5%); }
+            20% { transform: translate(-10%, 5%); }
+            30% { transform: translate(5%, -10%); }
+            40% { transform: translate(-5%, 10%); }
+            50% { transform: translate(10%, 5%); }
+            60% { transform: translate(5%, -5%); }
+            70% { transform: translate(-10%, -10%); }
+            80% { transform: translate(10%, -5%); }
+            90% { transform: translate(-5%, 5%); }
+        }
+
+        /* Floating geometric shapes */
+        .geometric-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .shape {
+            position: absolute;
+            border: 1px solid rgba(220, 20, 60, 0.1);
+            animation: floatShape 15s ease-in-out infinite;
+        }
+
+        .shape:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 20%;
+            left: 10%;
+            border-radius: 50%;
+            animation-delay: 0s;
+            animation-duration: 12s;
+        }
+
+        .shape:nth-child(2) {
+            width: 60px;
+            height: 60px;
+            top: 60%;
+            right: 15%;
+            animation-delay: 2s;
+            animation-duration: 14s;
+        }
+
+        .shape:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            bottom: 15%;
+            left: 20%;
+            border-radius: 50%;
+            animation-delay: 4s;
+            animation-duration: 16s;
+        }
+
+        .shape:nth-child(4) {
+            width: 70px;
+            height: 70px;
+            top: 35%;
+            right: 25%;
+            transform: rotate(45deg);
+            animation-delay: 1s;
+            animation-duration: 13s;
+        }
+
+        @keyframes floatShape {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.1;
+            }
+            50% {
+                transform: translateY(-40px) rotate(180deg);
+                opacity: 0.3;
+            }
+        }
+
+        /* Mouse-follow spotlight */
+        .mouse-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(220, 20, 60, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+            transition: transform 0.3s ease-out;
+            z-index: 1;
         }
 
         .hero-badge {
@@ -95,8 +236,8 @@
         }
 
         .avatar-container {
-            width: 140px;
-            height: 140px;
+            width: 200px;
+            height: 200px;
             margin: 0 auto 40px;
             position: relative;
             animation: fadeInScale 1s ease-out 0.2s both;
@@ -116,10 +257,10 @@
         .avatar-container::before {
             content: '';
             position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
+            top: -20px;
+            left: -20px;
+            right: -20px;
+            bottom: -20px;
             background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
             border-radius: 50%;
             animation: glow 3s ease-in-out infinite;
@@ -528,7 +669,15 @@
 <body>
     <!-- Hero Section -->
     <section class="hero">
-        <div class="container">
+        <div class="grain-overlay"></div>
+        <div class="geometric-shapes">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div>
+        <div class="mouse-glow" id="mouseGlow"></div>
+        <div class="container" style="position: relative; z-index: 10;">
             <div class="hero-badge">🖤 OpenClaw as your girlfriend</div>
             
             <div class="avatar-container">
@@ -698,6 +847,17 @@
     </footer>
 
     <script>
+        // Mouse-follow glow effect
+        const mouseGlow = document.getElementById('mouseGlow');
+        const hero = document.querySelector('.hero');
+        
+        hero.addEventListener('mousemove', (e) => {
+            const rect = hero.getBoundingClientRect();
+            const x = e.clientX - rect.left - 300; // Offset by half the glow width
+            const y = e.clientY - rect.top - 300; // Offset by half the glow height
+            mouseGlow.style.transform = `translate(${x}px, ${y}px)`;
+        });
+
         // Copy command to clipboard
         function copyCommand() {
             const text = 'npx clawdia-ai@latest';
