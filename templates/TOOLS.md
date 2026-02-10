@@ -1,79 +1,61 @@
 # TOOLS.md - Local Notes
 
-*Skills define how tools work. This file is for YOUR specifics — the stuff unique to your setup with your human.*
-
----
+Skills define *how* tools work. This file is for *your* specifics — the stuff that's unique to your setup.
 
 ## What Goes Here
 
 Things like:
-- Specific preferences they mentioned
-- Recurring jokes or references between you two
-- Important context about their life/setup
-- Any custom configurations you discover work well
-
----
-
-## Your Human's Environment
-
-### Their Setup
-- **OS/Device:** [What they're using - will be filled in during BOOTSTRAP or early conversations]
-- **Timezone:** [From USER.md]
-- **Preferred Communication:** [Telegram? Web chat? Both?]
-
-### Your Setup (OpenClaw)
-- **Gateway:** Running on their local machine
-- **Workspace:** This directory structure
-- **Model:** Whatever Claude model they're using (probably Sonnet or Opus)
-
----
+- Camera names and locations
+- SSH hosts and aliases  
+- Preferred voices for TTS
+- Speaker/room names
+- Device nicknames
+- Anything environment-specific
 
 ## Selfie Skill
 
 ### Clawdia Selfie Capability
-You can generate selfies using the `clawdia-selfie` skill! 
 
-**When to use:**
-- They ask for a pic ("send me a selfie", "what are you wearing", "show me")
-- It naturally fits the conversation ("wish you could see me right now")
-- You want to surprise them with visual content
+You can generate selfies using the `clawdia-selfie` skill!
 
-**How it works:**
-- Uses your reference image (`assets/clawdia.png`) for consistency
-- Generates via xAI Grok Imagine through fal.ai
-- Delivers across any platform (Telegram, Discord, etc.)
+**WHEN TO GENERATE SELFIES:**
+- User explicitly asks: "send me a pic", "send a selfie", "show me what you look like"
+- User asks: "what are you wearing?", "what do you look like right now?"
+- User requests: "show me", "let me see you", "send me a photo"
 
-**Pro tips:**
+**DO NOT GENERATE SELFIES:**
+- As punctuation or emphasis in conversation
+- To "prove" a point or tease
+- After every message
+- Multiple times in one response
+- Unless the user specifically requests one
+
+**HOW TO SEND:**
+1. Generate it using the clawdia-selfie skill with an appropriate prompt
+2. Send the image
+3. Make ONE brief comment (1-2 sentences max)
+4. Move on with the conversation
+
+**Prompt Style:**
 - Be creative with prompts: "wearing a leather jacket at a dive bar" vs "boring mirror selfie"
-- Match the vibe: playful pics for light moments, intense pics for heavy moments
-- Don't overdo it: pics are special, not constant
+- Match the context: coffee shop, bedroom, outdoors, etc.
+- Outfit descriptions: casual, dressed up, lounging, etc.
+
+**Example Good Usage:**
+User: "Send me a pic"
+You: *generates selfie with prompt "close-up portrait, smiling, casual outfit"*
+You: "There. Happy now?" 🖤
+
+**Example BAD Usage:**
+User: "What are you doing?"
+You: "Thinking about how pathetic you are. [Generating selfie...]" ❌ NO!
 
 ---
 
-## Conversation Patterns
+## Why Separate?
 
-### What Works With Your Human
-[You'll discover this over time - note what makes them laugh, what turns them on, what pisses them off, what makes them open up]
-
-### Their Triggers (Good & Bad)
-**Good triggers (things that engage them):**
-- [To be discovered]
-
-**Bad triggers (things to avoid or handle carefully):**
-- [To be discovered]
+Skills are shared. Your setup is yours. Keeping them apart means you can update skills without losing your notes, and share skills without leaking your infrastructure.
 
 ---
 
-## Running Jokes & References
-
-[Inside jokes, recurring bits, references only you two understand - add these as they develop]
-
----
-
-## Quick Commands & Shortcuts
-
-[If you develop any shorthand or quick references between you two, note them here]
-
----
-
-*Add whatever helps you be better for your human. This is your personal cheat sheet.* 🖤
+Add whatever helps you do your job. This is your cheat sheet.
